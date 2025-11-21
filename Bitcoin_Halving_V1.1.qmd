@@ -1,0 +1,307 @@
+---
+title: "Bitcoin Halving Process Visualization"
+subtitle: "How Bitcoin's supply approaches 21 million through programmatic halvings"
+format:
+  html:
+    theme: Flatly
+    code-fold: true
+    code-tools: true
+    toc: false
+    toc-depth: 2
+execute:
+  echo: false
+  warning: false
+---
+
+```{python}
+#| label: setup
+import pandas as pd
+import numpy as np
+import plotly.graph_objects as go
+import plotly.express as px
+from plotly.subplots import make_subplots
+```
+
+```{python}
+#| label: data-generation
+# Generate Bitcoin halving data
+def generate_halving_data():
+    data = []
+    block_reward = 50
+    cumulative_supply = 0
+    blocks_per_halving = 210000
+    
+    # Generate data for approximately 34 halvings
+    for halving in range(34):
+        year = 2009 + (halving * 4)
+        blocks_in_period = blocks_per_halving
+        btc_in_period = blocks_in_period * block_reward
+        cumulative_supply += btc_in_period
+        
+        data.append({
+            'halving': halving,
+            'year': year,
+            'block_reward': block_reward,
+            'cumulative_supply': cumulative_supply,
+            'btc_per_period': btc_in_period,
+            'percent_of_cap': (cumulative_supply / 21000000) * 100,
+            'remaining_supply': 21000000 - cumulative_supply
+        })
+        
+        block_reward = block_reward / 2
+        
+        # Stop when block reward becomes negligible
+        if block_reward < 0.00000001:
+            break
+    
+    return pd.DataFrame(data)
+
+df = generate_halving_data()
+```
+
+### Overview
+
+Bitcoin's 21 million coin cap is maintained through an elegant mathematical design that combines block rewards and halvings. This visualization shows how the supply approaches its maximum through programmatic halvings every 210,000 blocks (approximately 4 years).
+
+### Cumulative Bitcoin Supply Over Time
+
+```{python}
+#| label: cumulative-supply-chart
+fig1 = go.Figure()
+
+# Add cumulative supply line
+fig1.add_trace(go.Scatter(
+    x=df['year'],
+    y=df['cumulative_supply'],
+    mode='lines+markers',
+    name='Total BTC Supply',
+    line=dict(color='#F97316', width=3),
+    marker=dict(size=6, color='#F97316'),
+    hovertemplate='<b>Year:</b> %{x}<br>' +
+                  '<b>Supply:</b> %{y:,.0f} BTC<br>' +
+                  '<extra></extra>'
+))
+
+# Add 21M cap line
+fig1.add_trace(go.Scatter(
+    x=df['year'],
+    y=[21000000] * len(df),
+    mode='lines',
+    name='21M Cap',
+    line=dict(color='#EF4444', width=2, dash='dash'),
+    hovertemplate='<b>21M Cap</b><extra></extra>'
+))
+
+fig1.update_layout(
+    template='plotly_dark',
+    plot_bgcolor='#1F2937',
+    paper_bgcolor='#111827',
+    height=500,
+    xaxis=dict(
+        title='',
+        showgrid=True,
+        gridcolor='#374151',
+        tickfont=dict(size=12)
+    ),
+    yaxis=dict(
+        title='BTC Supply (millions)',
+        showgrid=True,
+        gridcolor='#374151',
+        tickformat='.1f',
+        ticksuffix='M',
+        tickvals=[0, 5000000, 10000000, 15000000, 20000000, 21000000],
+        ticktext=['0M', '5M', '10M', '15M', '20M', '21M'],
+        tickfont=dict(size=11)
+    ),
+    legend=dict(
+        orientation='h',
+        yanchor='bottom',
+        y=1.02,
+        xanchor='right',
+        x=1
+    ),
+    hovermode='x unified'
+)
+
+fig1.show()
+```
+
+::: {.callout-note}
+Bitcoin's block reward system creates new bitcoins approximately every 10 minutes, starting at 50 BTC per block in 2009. Every 210,000 blocks (roughly 4 years), this reward cuts in half—from 50 to 25, then 12.5, 6.25, 3.125, and so on—creating a predictable supply schedule. This halving process forms a geometric series that mathematically converges to approximately 21 million BTC, with the supply curve asymptotically approaching but never quite reaching the cap. By around 2140, when the block reward becomes smaller than Bitcoin's smallest unit (1 satoshi), no new bitcoins will be created, and miners will rely entirely on transaction fees for compensation.
+
+A satoshi is the smallest unit of Bitcoin, named after its pseudonymous creator Satoshi Nakamoto. One satoshi equals 0.00000001 BTC, meaning there are exactly 100 million satoshis in a single bitcoin. This tiny denomination allows for microtransactions and ensures Bitcoin remains divisible and practical even if its value increases dramatically, similar to how a dollar can be divided into 100 cents.
+:::
+
+### Remaining Bitcoin to be Mined
+
+```{python}
+#| label: remaining-supply-chart
+fig2 = go.Figure()
+
+# Add remaining supply line
+fig2.add_trace(go.Scatter(
+    x=df['year'],
+    y=df['remaining_supply'],
+    mode='lines+markers',
+    name='BTC Remaining',
+    line=dict(color='#3B82F6', width=3),
+    marker=dict(size=6, color='#3B82F6'),
+    hovertemplate='<b>Year:</b> %{x}<br>' +
+                  '<b>Remaining:</b> %{y:,.0f} BTC<br>' +
+                  '<b>% Remaining:</b> %{customdata:.2f}%<br>' +
+                  '<extra></extra>',
+    customdata=(df['remaining_supply'] / 21000000) * 100
+))
+
+fig2.update_layout(
+    template='plotly_dark',
+    plot_bgcolor='#1F2937',
+    paper_bgcolor='#111827',
+    height=500,
+    xaxis=dict(
+        title='',
+        showgrid=True,
+        gridcolor='#374151',
+        tickfont=dict(size=11)
+    ),
+    yaxis=dict(
+        title='',
+        type='log',
+        showgrid=True,
+        gridcolor='#374151',
+        tickformat=',',
+        tickfont=dict(size=11)
+    ),
+    legend=dict(
+        orientation='h',
+        yanchor='bottom',
+        y=1.02,
+        xanchor='right',
+        x=1
+    ),
+    hovermode='x unified'
+)
+
+fig2.show()
+```
+
+::: {.callout-note}
+Y-axis log scale reveals the consistent exponential decay - the remaining supply halves with each halving event.
+:::
+
+### Block Reward Decay Over Halvings
+
+```{python}
+#| label: block-reward-chart
+# Show only first 16 halvings for better visualization
+df_subset = df.head(33)
+
+fig3 = go.Figure()
+
+fig3.add_trace(go.Bar(
+    x=df_subset['halving'],
+    y=df_subset['block_reward'],
+    name='Block Reward',
+    marker_color='#F97316',
+    hovertemplate='<b>Halving #:</b> %{x}<br>' +
+                  '<b>Year:</b> ~%{customdata}<br>' +
+                  '<b>Block Reward:</b> %{y:.8f} BTC<br>' +
+                  '<extra></extra>',
+    customdata=df_subset['year']
+))
+
+fig3.update_layout(
+    template='plotly_dark',
+    plot_bgcolor='#1F2937',
+    paper_bgcolor='#111827',
+    height=500,
+    xaxis=dict(
+        title='Halving Number',
+        showgrid=True,
+        gridcolor='#374151',
+        tickfont=dict(size=11),
+        tickmode='linear',
+        tick0=0,
+        dtick=1
+    ),
+    yaxis=dict(
+        title='Block Reward (BTC)',
+        type='log',
+        showgrid=True,
+        gridcolor='#374151',
+        tickfont=dict(size=11)
+    ),
+    hovermode='x unified'
+)
+
+fig3.show()
+```
+
+::: {.callout-note}
+Bitcoin miners receive a fixed number of newly created bitcoins (the "block reward") for successfully mining each block, which occurs approximately every 10 minutes. This reward started at 50 BTC in 2009 and automatically halves every 210,000 blocks (roughly every 4 years), currently sitting at 3.125 BTC as of 2024. Through this systematic halving process, the total supply of Bitcoin will asymptotically approach but never exceed 21 million coins, with the final bitcoin expected to be mined around the year 2140. Y-axis log scale again reveals the consistent exponential decay.
+:::
+
+### Bitcoin Halving Schedule {.tabset}
+
+
+```{python}
+#| label: data-table
+# Show first 33 halvings in a formatted table
+df_display = df.head(33).copy()
+df_display['year'] = '~' + df_display['year'].astype(str)
+df_display['block_reward'] = df_display['block_reward'].apply(lambda x: f'{x:.8f}')
+df_display['btc_per_period'] = df_display['btc_per_period'].apply(lambda x: f'{x:,.3f}')
+df_display['cumulative_supply'] = df_display['cumulative_supply'].apply(lambda x: f'{x:,.3f}')
+df_display['percent_of_cap'] = df_display['percent_of_cap'].apply(lambda x: f'{x:.9f}%')
+
+df_display = df_display[['halving', 'year', 'block_reward', 'btc_per_period', 'cumulative_supply', 'percent_of_cap']]
+df_display.columns = ['Halving #', 'Year', 'Block Reward', 'BTC Mined', 'Cumulative Supply', '% of Cap']
+
+# Style the current halving (2024-2028)
+styled_df = df_display.style.set_properties(**{
+    'background-color': '#1F2937',
+    'color': '#D1D5DB',
+    'border-color': '#374151'
+}).set_table_styles([
+    {'selector': 'th', 'props': [('background-color', '#F97316'), ('color', 'white'), ('font-weight', 'bold')]},
+    {'selector': 'tr:nth-of-type(5)', 'props': [('background-color', '#7C2D12')]}  # Highlight current halving
+]).hide(axis='index')
+
+styled_df
+```
+
+::: {.callout-note}
+- Current halving (2024-2028) is halving #4
+- By halving #10 (around 2049), 99.9% of all Bitcoin will be mined
+- By 2101 (Halving #23), only 1.25 Bitcoin will be available for mining
+- Final Bitcoin will be mined around year 2140
+:::
+
+### Summary Statistics
+
+```{python}
+#| label: summary-stats
+from IPython.display import Markdown
+
+stats = f"""
+| Metric | Value |
+|--------|-------|
+| **First Block Reward** | 50 BTC |
+| **Current Block Reward** | 3.125 BTC (as of 2024) |
+| **Total Halvings Until ~0** | {len(df)} |
+| **Years to Mine All Bitcoin** | ~{df.iloc[-1]['year'] - 2009} years |
+| **Bitcoin Mined in First 4 Years** | {df.iloc[0]['cumulative_supply']:,.0f} BTC (50% of total) |
+| **Bitcoin After 10 Halvings** | {df.iloc[9]['cumulative_supply']:,.0f} BTC ({df.iloc[8]['percent_of_cap']:.2f}% of cap) |
+| **Estimated Final Supply** | 20,999,999.9769 BTC |
+"""
+
+Markdown(stats)
+```
+
+### The Mathematics
+
+The total supply follows a geometric series:
+
+$$
+\text{Total Supply} = \sum_{n=0}^{64} 210{,}000 \times \frac{50}{2^n}
+$$
