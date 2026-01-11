@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Bitcoin Halving Process</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="Bitcoin_Halving_V1.1_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Bitcoin_Halving_V1.1_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Bitcoin_Halving_V1.1_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Bitcoin_Halving_V1.1_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="Bitcoin_Halving_V1.1_files/libs/quarto-html/popper.min.js"></script>
+<script src="Bitcoin_Halving_V1.1_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Bitcoin_Halving_V1.1_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Bitcoin_Halving_V1.1_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Bitcoin_Halving_V1.1_files/libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Bitcoin_Halving_V1.1_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Bitcoin_Halving_V1.1_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Bitcoin_Halving_V1.1_files/libs/bootstrap/bootstrap-82a8e0681529fff444bbc39736ff6b3a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+<script type="text/javascript">
+window.PlotlyConfig = {MathJaxConfig: 'local'};
+if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}
+</script>
+<script type="module">import "https://cdn.plot.ly/plotly-3.2.0.min"</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Bitcoin Halving Process</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">How Bitcoin’s supply approaches 21 million through programmatic halvings</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level3">
+<h3 class="anchored" data-anchor-id="overview">Overview</h3>
+<p>Bitcoin’s 21 million coin cap is maintained through an elegant mathematical design that combines block rewards and halvings. This visualization shows how the supply approaches its maximum through programmatic halvings every 210,000 blocks (approximately 4 years).</p>
+</section>
+<section id="cumulative-bitcoin-supply-over-time" class="level3">
+<h3 class="anchored" data-anchor-id="cumulative-bitcoin-supply-over-time">Cumulative Bitcoin Supply Over Time</h3>
+<div id="cell-cumulative-supply-chart" class="cell" data-execution_count="3">
+<div id="cumulative-supply-chart" class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.2.0.min.js" integrity="sha256-iZ2u/oU2wf/vDbl/ChcX93WgbBRSBvUO6N413hDz7xM=" crossorigin="anonymous"></script>                <div id="86029ae3-834f-45d5-a270-83c8c6899094" class="plotly-graph-div" style="height:500px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("86029ae3-834f-45d5-a270-83c8c6899094")) {                    Plotly.newPlot(                        "86029ae3-834f-45d5-a270-83c8c6899094",                        [{"hovertemplate":"\u003cb\u003eYear:\u003c\u002fb\u003e %{x}\u003cbr\u003e\u003cb\u003eSupply:\u003c\u002fb\u003e %{y:,.0f} BTC\u003cbr\u003e\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#F97316","width":3},"marker":{"color":"#F97316","size":6},"mode":"lines+markers","name":"Total BTC Supply","x":{"dtype":"i2","bdata":"2QfdB+EH5QfpB+0H8Qf1B\u002fkH\u002fQcBCAUICQgNCBEIFQgZCB0IIQglCCkILQgxCDUIOQg9CEEIRQhJCE0IUQhVCFkI"},"y":{"dtype":"f8","bdata":"AAAAAPQGZEEAAAAAbgpuQQAAAIAVhnFBAAAAwITGckEAAABgvGZzQQAAADDYtnNBAAAAGObec0EAAAAM7fJzQQAAAIbw\u002fHNBAAAAQ\u002fIBdEEAAIAhcwR0QQAAwJCzBXRBAABgyFMGdEEAADDkowZ0QQAAGPLLBnRBAAAM+d8GdEEAAIb86QZ0QQAAQ\u002f7uBnRBAIAhf\u002fEGdEEAwJC\u002f8gZ0QQBgyF\u002fzBnRBADDkr\u002fMGdEEAGPLX8wZ0QQAM+evzBnRBAIb89fMGdEEAQ\u002f768wZ0QYAhf\u002f3zBnRBwJC\u002f\u002fvMGdEFgyF\u002f\u002f8wZ0QTDkr\u002f\u002fzBnRBGPLX\u002f\u002fMGdEEM+ev\u002f8wZ0QYb89f\u002fzBnRB"},"type":"scatter"},{"hovertemplate":"\u003cb\u003e21M Cap\u003c\u002fb\u003e\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#EF4444","dash":"dash","width":2},"mode":"lines","name":"21M Cap","x":{"dtype":"i2","bdata":"2QfdB+EH5QfpB+0H8Qf1B\u002fkH\u002fQcBCAUICQgNCBEIFQgZCB0IIQglCCkILQgxCDUIOQg9CEEIRQhJCE0IUQhVCFkI"},"y":[21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000,21000000],"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#f2f5fa"},"error_y":{"color":"#f2f5fa"},"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"baxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"line":{"color":"#283442"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"marker":{"line":{"color":"#283442"}},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#506784"},"line":{"color":"rgb(17,17,17)"}},"header":{"fill":{"color":"#2a3f5f"},"line":{"color":"rgb(17,17,17)"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#f2f5fa","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#f2f5fa"},"geo":{"bgcolor":"rgb(17,17,17)","lakecolor":"rgb(17,17,17)","landcolor":"rgb(17,17,17)","showlakes":true,"showland":true,"subunitcolor":"#506784"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"dark"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"rgb(17,17,17)","plot_bgcolor":"rgb(17,17,17)","polar":{"angularaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","radialaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"yaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"zaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"}},"shapedefaults":{"line":{"color":"#f2f5fa"}},"sliderdefaults":{"bgcolor":"#C8D4E3","bordercolor":"rgb(17,17,17)","borderwidth":1,"tickwidth":0},"ternary":{"aaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"baxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","caxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"title":{"x":0.05},"updatemenudefaults":{"bgcolor":"#506784","borderwidth":0},"xaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2}}},"xaxis":{"tickfont":{"size":12},"title":{"text":""},"showgrid":true,"gridcolor":"#374151"},"yaxis":{"tickfont":{"size":11},"title":{"text":"BTC Supply (millions)"},"showgrid":true,"gridcolor":"#374151","tickformat":".1f","ticksuffix":"M","tickvals":[0,5000000,10000000,15000000,20000000,21000000],"ticktext":["0M","5M","10M","15M","20M","21M"]},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"right","x":1},"plot_bgcolor":"#1F2937","paper_bgcolor":"#111827","height":500,"hovermode":"x unified"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('86029ae3-834f-45d5-a270-83c8c6899094');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Bitcoin’s block reward system creates new bitcoins approximately every 10 minutes, starting at 50 BTC per block in 2009. Every 210,000 blocks (roughly 4 years), this reward cuts in half—from 50 to 25, then 12.5, 6.25, 3.125, and so on—creating a predictable supply schedule. This halving process forms a geometric series that mathematically converges to approximately 21 million BTC, with the supply curve asymptotically approaching but never quite reaching the cap. By around 2140, when the block reward becomes smaller than Bitcoin’s smallest unit (1 satoshi), no new bitcoins will be created, and miners will rely entirely on transaction fees for compensation.</p>
+<p>A satoshi is the smallest unit of Bitcoin, named after its pseudonymous creator Satoshi Nakamoto. One satoshi equals 0.00000001 BTC, meaning there are exactly 100 million satoshis in a single bitcoin. This tiny denomination allows for microtransactions and ensures Bitcoin remains divisible and practical even if its value increases dramatically, similar to how a dollar can be divided into 100 cents.</p>
+</div>
+</div>
+</section>
+<section id="remaining-bitcoin-to-be-mined" class="level3">
+<h3 class="anchored" data-anchor-id="remaining-bitcoin-to-be-mined">Remaining Bitcoin to be Mined</h3>
+<div id="cell-remaining-supply-chart" class="cell" data-execution_count="4">
+<div id="remaining-supply-chart" class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.2.0.min.js" integrity="sha256-iZ2u/oU2wf/vDbl/ChcX93WgbBRSBvUO6N413hDz7xM=" crossorigin="anonymous"></script>                <div id="87d90f10-8efd-4367-99e0-3d80d3160105" class="plotly-graph-div" style="height:500px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("87d90f10-8efd-4367-99e0-3d80d3160105")) {                    Plotly.newPlot(                        "87d90f10-8efd-4367-99e0-3d80d3160105",                        [{"customdata":{"dtype":"f8","bdata":"AAAAAAAASUAAAAAAAAA5QAAAAAAAAClAAAAAAAAAGUAAAAAAAAAJQAAAAAAAAPk\u002fAAAAAAAA6T8AAAAAAADZPwAAAAAAAMk\u002fAAAAAAAAuT8AAAAAAACpPwAAAAAAAJk\u002fAAAAAAAAiT8AAAAAAAB5PwAAAAAAAGk\u002fAAAAAAAAWT8AAAAAAABJPwAAAAAAADk\u002fAAAAAAAAKT8AAAAAAAAZPwAAAAAAAAk\u002fAAAAAAAA+T4AAAAAAADpPgAAAAAAANk+AAAAAAAAyT4AAAAAAAC5PgAAAAAAAKk+AAAAAAAAmT4AAAAAAACJPgAAAAAAAHk+AAAAAAAAaT4AAAAAAABZPgAAAAAAAEk+"},"hovertemplate":"\u003cb\u003eYear:\u003c\u002fb\u003e %{x}\u003cbr\u003e\u003cb\u003eRemaining:\u003c\u002fb\u003e %{y:,.0f} BTC\u003cbr\u003e\u003cb\u003e% Remaining:\u003c\u002fb\u003e %{customdata:.2f}%\u003cbr\u003e\u003cextra\u003e\u003c\u002fextra\u003e","line":{"color":"#3B82F6","width":3},"marker":{"color":"#3B82F6","size":6},"mode":"lines+markers","name":"BTC Remaining","x":{"dtype":"i2","bdata":"2QfdB+EH5QfpB+0H8Qf1B\u002fkH\u002fQcBCAUICQgNCBEIFQgZCB0IIQglCCkILQgxCDUIOQg9CEEIRQhJCE0IUQhVCFkI"},"y":{"dtype":"f8","bdata":"AAAAAPQGZEEAAAAA9AZUQQAAAAD0BkRBAAAAAPQGNEEAAAAA9AYkQQAAAAD0BhRBAAAAAPQGBEEAAAAA9Ab0QAAAAAD0BuRAAAAAAPQG1EAAAAAA9AbEQAAAAAD0BrRAAAAAAPQGpEAAAAAA9AaUQAAAAAD0BoRAAAAAAPQGdEAAAAAA9AZkQAAAAAD0BlRAAAAAAPQGREAAAAAA9AY0QAAAAAD0BiRAAAAAAPQGFEAAAAAA9AYEQAAAAAD0BvQ\u002fAAAAAPQG5D8AAAAA9AbUPwAAAAD0BsQ\u002fAAAAAPQGtD8AAAAA9AakPwAAAAD0BpQ\u002fAAAAAPQGhD8AAAAA9AZ0PwAAAAD0BmQ\u002f"},"type":"scatter"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#f2f5fa"},"error_y":{"color":"#f2f5fa"},"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"baxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"line":{"color":"#283442"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"marker":{"line":{"color":"#283442"}},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#506784"},"line":{"color":"rgb(17,17,17)"}},"header":{"fill":{"color":"#2a3f5f"},"line":{"color":"rgb(17,17,17)"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#f2f5fa","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#f2f5fa"},"geo":{"bgcolor":"rgb(17,17,17)","lakecolor":"rgb(17,17,17)","landcolor":"rgb(17,17,17)","showlakes":true,"showland":true,"subunitcolor":"#506784"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"dark"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"rgb(17,17,17)","plot_bgcolor":"rgb(17,17,17)","polar":{"angularaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","radialaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"yaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"zaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"}},"shapedefaults":{"line":{"color":"#f2f5fa"}},"sliderdefaults":{"bgcolor":"#C8D4E3","bordercolor":"rgb(17,17,17)","borderwidth":1,"tickwidth":0},"ternary":{"aaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"baxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","caxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"title":{"x":0.05},"updatemenudefaults":{"bgcolor":"#506784","borderwidth":0},"xaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2}}},"xaxis":{"tickfont":{"size":11},"title":{"text":""},"showgrid":true,"gridcolor":"#374151"},"yaxis":{"tickfont":{"size":11},"title":{"text":""},"type":"log","showgrid":true,"gridcolor":"#374151","tickformat":","},"legend":{"orientation":"h","yanchor":"bottom","y":1.02,"xanchor":"right","x":1},"plot_bgcolor":"#1F2937","paper_bgcolor":"#111827","height":500,"hovermode":"x unified"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('87d90f10-8efd-4367-99e0-3d80d3160105');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Y-axis log scale reveals the consistent exponential decay - the remaining supply halves with each halving event.</p>
+</div>
+</div>
+</section>
+<section id="block-reward-decay-over-halvings" class="level3">
+<h3 class="anchored" data-anchor-id="block-reward-decay-over-halvings">Block Reward Decay Over Halvings</h3>
+<div id="cell-block-reward-chart" class="cell" data-execution_count="5">
+<div id="block-reward-chart" class="cell-output cell-output-display">
+<div>            <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_SVG"></script><script type="text/javascript">if (window.MathJax && window.MathJax.Hub && window.MathJax.Hub.Config) {window.MathJax.Hub.Config({SVG: {font: "STIX-Web"}});}</script>                <script type="text/javascript">window.PlotlyConfig = {MathJaxConfig: 'local'};</script>
+        <script charset="utf-8" src="https://cdn.plot.ly/plotly-3.2.0.min.js" integrity="sha256-iZ2u/oU2wf/vDbl/ChcX93WgbBRSBvUO6N413hDz7xM=" crossorigin="anonymous"></script>                <div id="8dcc80a0-c384-41be-b990-405af761f216" class="plotly-graph-div" style="height:500px; width:100%;"></div>            <script type="text/javascript">                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("8dcc80a0-c384-41be-b990-405af761f216")) {                    Plotly.newPlot(                        "8dcc80a0-c384-41be-b990-405af761f216",                        [{"customdata":{"dtype":"i2","bdata":"2QfdB+EH5QfpB+0H8Qf1B\u002fkH\u002fQcBCAUICQgNCBEIFQgZCB0IIQglCCkILQgxCDUIOQg9CEEIRQhJCE0IUQhVCFkI"},"hovertemplate":"\u003cb\u003eHalving #:\u003c\u002fb\u003e %{x}\u003cbr\u003e\u003cb\u003eYear:\u003c\u002fb\u003e ~%{customdata}\u003cbr\u003e\u003cb\u003eBlock Reward:\u003c\u002fb\u003e %{y:.8f} BTC\u003cbr\u003e\u003cextra\u003e\u003c\u002fextra\u003e","marker":{"color":"#F97316"},"name":"Block Reward","x":{"dtype":"i1","bdata":"AAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8g"},"y":{"dtype":"f8","bdata":"AAAAAAAASUAAAAAAAAA5QAAAAAAAAClAAAAAAAAAGUAAAAAAAAAJQAAAAAAAAPk\u002fAAAAAAAA6T8AAAAAAADZPwAAAAAAAMk\u002fAAAAAAAAuT8AAAAAAACpPwAAAAAAAJk\u002fAAAAAAAAiT8AAAAAAAB5PwAAAAAAAGk\u002fAAAAAAAAWT8AAAAAAABJPwAAAAAAADk\u002fAAAAAAAAKT8AAAAAAAAZPwAAAAAAAAk\u002fAAAAAAAA+T4AAAAAAADpPgAAAAAAANk+AAAAAAAAyT4AAAAAAAC5PgAAAAAAAKk+AAAAAAAAmT4AAAAAAACJPgAAAAAAAHk+AAAAAAAAaT4AAAAAAABZPgAAAAAAAEk+"},"type":"bar"}],                        {"template":{"data":{"barpolar":[{"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"bar":[{"error_x":{"color":"#f2f5fa"},"error_y":{"color":"#f2f5fa"},"marker":{"line":{"color":"rgb(17,17,17)","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"carpet":[{"aaxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"baxis":{"endlinecolor":"#A2B1C6","gridcolor":"#506784","linecolor":"#506784","minorgridcolor":"#506784","startlinecolor":"#A2B1C6"},"type":"carpet"}],"choropleth":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"choropleth"}],"contourcarpet":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"contourcarpet"}],"contour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"contour"}],"heatmap":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"heatmap"}],"histogram2dcontour":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2dcontour"}],"histogram2d":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"histogram2d"}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"mesh3d":[{"colorbar":{"outlinewidth":0,"ticks":""},"type":"mesh3d"}],"parcoords":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"parcoords"}],"pie":[{"automargin":true,"type":"pie"}],"scatter3d":[{"line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatter3d"}],"scattercarpet":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattercarpet"}],"scattergeo":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattergeo"}],"scattergl":[{"marker":{"line":{"color":"#283442"}},"type":"scattergl"}],"scattermapbox":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermapbox"}],"scattermap":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scattermap"}],"scatterpolargl":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolargl"}],"scatterpolar":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterpolar"}],"scatter":[{"marker":{"line":{"color":"#283442"}},"type":"scatter"}],"scatterternary":[{"marker":{"colorbar":{"outlinewidth":0,"ticks":""}},"type":"scatterternary"}],"surface":[{"colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"type":"surface"}],"table":[{"cells":{"fill":{"color":"#506784"},"line":{"color":"rgb(17,17,17)"}},"header":{"fill":{"color":"#2a3f5f"},"line":{"color":"rgb(17,17,17)"}},"type":"table"}]},"layout":{"annotationdefaults":{"arrowcolor":"#f2f5fa","arrowhead":0,"arrowwidth":1},"autotypenumbers":"strict","coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]],"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]},"colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#f2f5fa"},"geo":{"bgcolor":"rgb(17,17,17)","lakecolor":"rgb(17,17,17)","landcolor":"rgb(17,17,17)","showlakes":true,"showland":true,"subunitcolor":"#506784"},"hoverlabel":{"align":"left"},"hovermode":"closest","mapbox":{"style":"dark"},"margin":{"b":0,"l":0,"r":0,"t":30},"paper_bgcolor":"rgb(17,17,17)","plot_bgcolor":"rgb(17,17,17)","polar":{"angularaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","radialaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"scene":{"xaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"yaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"},"zaxis":{"backgroundcolor":"rgb(17,17,17)","gridcolor":"#506784","gridwidth":2,"linecolor":"#506784","showbackground":true,"ticks":"","zerolinecolor":"#C8D4E3"}},"shapedefaults":{"line":{"color":"#f2f5fa"}},"sliderdefaults":{"bgcolor":"#C8D4E3","bordercolor":"rgb(17,17,17)","borderwidth":1,"tickwidth":0},"ternary":{"aaxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"baxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""},"bgcolor":"rgb(17,17,17)","caxis":{"gridcolor":"#506784","linecolor":"#506784","ticks":""}},"title":{"x":0.05},"updatemenudefaults":{"bgcolor":"#506784","borderwidth":0},"xaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2},"yaxis":{"automargin":true,"gridcolor":"#283442","linecolor":"#506784","ticks":"","title":{"standoff":15},"zerolinecolor":"#283442","zerolinewidth":2}}},"xaxis":{"tickfont":{"size":11},"title":{"text":"Halving Number"},"showgrid":true,"gridcolor":"#374151","tickmode":"linear","tick0":0,"dtick":1},"yaxis":{"tickfont":{"size":11},"title":{"text":"Block Reward (BTC)"},"type":"log","showgrid":true,"gridcolor":"#374151"},"plot_bgcolor":"#1F2937","paper_bgcolor":"#111827","height":500,"hovermode":"x unified"},                        {"responsive": true}                    ).then(function(){
+                            
+var gd = document.getElementById('8dcc80a0-c384-41be-b990-405af761f216');
+var x = new MutationObserver(function (mutations, observer) {{
+        var display = window.getComputedStyle(gd).display;
+        if (!display || display === 'none') {{
+            console.log([gd, 'removed!']);
+            Plotly.purge(gd);
+            observer.disconnect();
+        }}
+}});
+
+// Listen for the removal of the full notebook cells
+var notebookContainer = gd.closest('#notebook-container');
+if (notebookContainer) {{
+    x.observe(notebookContainer, {childList: true});
+}}
+
+// Listen for the clearing of the current output cell
+var outputEl = gd.closest('.output');
+if (outputEl) {{
+    x.observe(outputEl, {childList: true});
+}}
+
+                        })                };            </script>        </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Bitcoin miners receive a fixed number of newly created bitcoins (the “block reward”) for successfully mining each block, which occurs approximately every 10 minutes. This reward started at 50 BTC in 2009 and automatically halves every 210,000 blocks (roughly every 4 years), currently sitting at 3.125 BTC as of 2024. Through this systematic halving process, the total supply of Bitcoin will asymptotically approach but never exceed 21 million coins, with the final bitcoin expected to be mined around the year 2140. Y-axis log scale again reveals the consistent exponential decay.</p>
+</div>
+</div>
+</section>
+<section id="bitcoin-halving-schedule" class="level3 tabset">
+<h3 class="tabset anchored" data-anchor-id="bitcoin-halving-schedule">Bitcoin Halving Schedule</h3>
+<div id="cell-data-table" class="cell" data-execution_count="6">
+<div id="data-table" class="cell-output cell-output-display" data-execution_count="6">
+<style type="text/css">
+#T_fe7f3 th {
+  background-color: #F97316;
+  color: white;
+  font-weight: bold;
+}
+#T_fe7f3 tr:nth-of-type(5) {
+  background-color: #7C2D12;
+}
+#T_fe7f3_row0_col0, #T_fe7f3_row0_col1, #T_fe7f3_row0_col2, #T_fe7f3_row0_col3, #T_fe7f3_row0_col4, #T_fe7f3_row0_col5, #T_fe7f3_row1_col0, #T_fe7f3_row1_col1, #T_fe7f3_row1_col2, #T_fe7f3_row1_col3, #T_fe7f3_row1_col4, #T_fe7f3_row1_col5, #T_fe7f3_row2_col0, #T_fe7f3_row2_col1, #T_fe7f3_row2_col2, #T_fe7f3_row2_col3, #T_fe7f3_row2_col4, #T_fe7f3_row2_col5, #T_fe7f3_row3_col0, #T_fe7f3_row3_col1, #T_fe7f3_row3_col2, #T_fe7f3_row3_col3, #T_fe7f3_row3_col4, #T_fe7f3_row3_col5, #T_fe7f3_row4_col0, #T_fe7f3_row4_col1, #T_fe7f3_row4_col2, #T_fe7f3_row4_col3, #T_fe7f3_row4_col4, #T_fe7f3_row4_col5, #T_fe7f3_row5_col0, #T_fe7f3_row5_col1, #T_fe7f3_row5_col2, #T_fe7f3_row5_col3, #T_fe7f3_row5_col4, #T_fe7f3_row5_col5, #T_fe7f3_row6_col0, #T_fe7f3_row6_col1, #T_fe7f3_row6_col2, #T_fe7f3_row6_col3, #T_fe7f3_row6_col4, #T_fe7f3_row6_col5, #T_fe7f3_row7_col0, #T_fe7f3_row7_col1, #T_fe7f3_row7_col2, #T_fe7f3_row7_col3, #T_fe7f3_row7_col4, #T_fe7f3_row7_col5, #T_fe7f3_row8_col0, #T_fe7f3_row8_col1, #T_fe7f3_row8_col2, #T_fe7f3_row8_col3, #T_fe7f3_row8_col4, #T_fe7f3_row8_col5, #T_fe7f3_row9_col0, #T_fe7f3_row9_col1, #T_fe7f3_row9_col2, #T_fe7f3_row9_col3, #T_fe7f3_row9_col4, #T_fe7f3_row9_col5, #T_fe7f3_row10_col0, #T_fe7f3_row10_col1, #T_fe7f3_row10_col2, #T_fe7f3_row10_col3, #T_fe7f3_row10_col4, #T_fe7f3_row10_col5, #T_fe7f3_row11_col0, #T_fe7f3_row11_col1, #T_fe7f3_row11_col2, #T_fe7f3_row11_col3, #T_fe7f3_row11_col4, #T_fe7f3_row11_col5, #T_fe7f3_row12_col0, #T_fe7f3_row12_col1, #T_fe7f3_row12_col2, #T_fe7f3_row12_col3, #T_fe7f3_row12_col4, #T_fe7f3_row12_col5, #T_fe7f3_row13_col0, #T_fe7f3_row13_col1, #T_fe7f3_row13_col2, #T_fe7f3_row13_col3, #T_fe7f3_row13_col4, #T_fe7f3_row13_col5, #T_fe7f3_row14_col0, #T_fe7f3_row14_col1, #T_fe7f3_row14_col2, #T_fe7f3_row14_col3, #T_fe7f3_row14_col4, #T_fe7f3_row14_col5, #T_fe7f3_row15_col0, #T_fe7f3_row15_col1, #T_fe7f3_row15_col2, #T_fe7f3_row15_col3, #T_fe7f3_row15_col4, #T_fe7f3_row15_col5, #T_fe7f3_row16_col0, #T_fe7f3_row16_col1, #T_fe7f3_row16_col2, #T_fe7f3_row16_col3, #T_fe7f3_row16_col4, #T_fe7f3_row16_col5, #T_fe7f3_row17_col0, #T_fe7f3_row17_col1, #T_fe7f3_row17_col2, #T_fe7f3_row17_col3, #T_fe7f3_row17_col4, #T_fe7f3_row17_col5, #T_fe7f3_row18_col0, #T_fe7f3_row18_col1, #T_fe7f3_row18_col2, #T_fe7f3_row18_col3, #T_fe7f3_row18_col4, #T_fe7f3_row18_col5, #T_fe7f3_row19_col0, #T_fe7f3_row19_col1, #T_fe7f3_row19_col2, #T_fe7f3_row19_col3, #T_fe7f3_row19_col4, #T_fe7f3_row19_col5, #T_fe7f3_row20_col0, #T_fe7f3_row20_col1, #T_fe7f3_row20_col2, #T_fe7f3_row20_col3, #T_fe7f3_row20_col4, #T_fe7f3_row20_col5, #T_fe7f3_row21_col0, #T_fe7f3_row21_col1, #T_fe7f3_row21_col2, #T_fe7f3_row21_col3, #T_fe7f3_row21_col4, #T_fe7f3_row21_col5, #T_fe7f3_row22_col0, #T_fe7f3_row22_col1, #T_fe7f3_row22_col2, #T_fe7f3_row22_col3, #T_fe7f3_row22_col4, #T_fe7f3_row22_col5, #T_fe7f3_row23_col0, #T_fe7f3_row23_col1, #T_fe7f3_row23_col2, #T_fe7f3_row23_col3, #T_fe7f3_row23_col4, #T_fe7f3_row23_col5, #T_fe7f3_row24_col0, #T_fe7f3_row24_col1, #T_fe7f3_row24_col2, #T_fe7f3_row24_col3, #T_fe7f3_row24_col4, #T_fe7f3_row24_col5, #T_fe7f3_row25_col0, #T_fe7f3_row25_col1, #T_fe7f3_row25_col2, #T_fe7f3_row25_col3, #T_fe7f3_row25_col4, #T_fe7f3_row25_col5, #T_fe7f3_row26_col0, #T_fe7f3_row26_col1, #T_fe7f3_row26_col2, #T_fe7f3_row26_col3, #T_fe7f3_row26_col4, #T_fe7f3_row26_col5, #T_fe7f3_row27_col0, #T_fe7f3_row27_col1, #T_fe7f3_row27_col2, #T_fe7f3_row27_col3, #T_fe7f3_row27_col4, #T_fe7f3_row27_col5, #T_fe7f3_row28_col0, #T_fe7f3_row28_col1, #T_fe7f3_row28_col2, #T_fe7f3_row28_col3, #T_fe7f3_row28_col4, #T_fe7f3_row28_col5, #T_fe7f3_row29_col0, #T_fe7f3_row29_col1, #T_fe7f3_row29_col2, #T_fe7f3_row29_col3, #T_fe7f3_row29_col4, #T_fe7f3_row29_col5, #T_fe7f3_row30_col0, #T_fe7f3_row30_col1, #T_fe7f3_row30_col2, #T_fe7f3_row30_col3, #T_fe7f3_row30_col4, #T_fe7f3_row30_col5, #T_fe7f3_row31_col0, #T_fe7f3_row31_col1, #T_fe7f3_row31_col2, #T_fe7f3_row31_col3, #T_fe7f3_row31_col4, #T_fe7f3_row31_col5, #T_fe7f3_row32_col0, #T_fe7f3_row32_col1, #T_fe7f3_row32_col2, #T_fe7f3_row32_col3, #T_fe7f3_row32_col4, #T_fe7f3_row32_col5 {
+  background-color: #1F2937;
+  color: #D1D5DB;
+  border-color: #374151;
+}
+</style>
+
+<table id="T_fe7f3" class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_fe7f3_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Halving #</th>
+<th id="T_fe7f3_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Year</th>
+<th id="T_fe7f3_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Block Reward</th>
+<th id="T_fe7f3_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">BTC Mined</th>
+<th id="T_fe7f3_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Cumulative Supply</th>
+<th id="T_fe7f3_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">% of Cap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_fe7f3_row0_col0" class="data row0 col0">0</td>
+<td id="T_fe7f3_row0_col1" class="data row0 col1">~2009</td>
+<td id="T_fe7f3_row0_col2" class="data row0 col2">50.00000000</td>
+<td id="T_fe7f3_row0_col3" class="data row0 col3">10,500,000.000</td>
+<td id="T_fe7f3_row0_col4" class="data row0 col4">10,500,000.000</td>
+<td id="T_fe7f3_row0_col5" class="data row0 col5">50.000000000%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row1_col0" class="data row1 col0">1</td>
+<td id="T_fe7f3_row1_col1" class="data row1 col1">~2013</td>
+<td id="T_fe7f3_row1_col2" class="data row1 col2">25.00000000</td>
+<td id="T_fe7f3_row1_col3" class="data row1 col3">5,250,000.000</td>
+<td id="T_fe7f3_row1_col4" class="data row1 col4">15,750,000.000</td>
+<td id="T_fe7f3_row1_col5" class="data row1 col5">75.000000000%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row2_col0" class="data row2 col0">2</td>
+<td id="T_fe7f3_row2_col1" class="data row2 col1">~2017</td>
+<td id="T_fe7f3_row2_col2" class="data row2 col2">12.50000000</td>
+<td id="T_fe7f3_row2_col3" class="data row2 col3">2,625,000.000</td>
+<td id="T_fe7f3_row2_col4" class="data row2 col4">18,375,000.000</td>
+<td id="T_fe7f3_row2_col5" class="data row2 col5">87.500000000%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row3_col0" class="data row3 col0">3</td>
+<td id="T_fe7f3_row3_col1" class="data row3 col1">~2021</td>
+<td id="T_fe7f3_row3_col2" class="data row3 col2">6.25000000</td>
+<td id="T_fe7f3_row3_col3" class="data row3 col3">1,312,500.000</td>
+<td id="T_fe7f3_row3_col4" class="data row3 col4">19,687,500.000</td>
+<td id="T_fe7f3_row3_col5" class="data row3 col5">93.750000000%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row4_col0" class="data row4 col0">4</td>
+<td id="T_fe7f3_row4_col1" class="data row4 col1">~2025</td>
+<td id="T_fe7f3_row4_col2" class="data row4 col2">3.12500000</td>
+<td id="T_fe7f3_row4_col3" class="data row4 col3">656,250.000</td>
+<td id="T_fe7f3_row4_col4" class="data row4 col4">20,343,750.000</td>
+<td id="T_fe7f3_row4_col5" class="data row4 col5">96.875000000%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row5_col0" class="data row5 col0">5</td>
+<td id="T_fe7f3_row5_col1" class="data row5 col1">~2029</td>
+<td id="T_fe7f3_row5_col2" class="data row5 col2">1.56250000</td>
+<td id="T_fe7f3_row5_col3" class="data row5 col3">328,125.000</td>
+<td id="T_fe7f3_row5_col4" class="data row5 col4">20,671,875.000</td>
+<td id="T_fe7f3_row5_col5" class="data row5 col5">98.437500000%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row6_col0" class="data row6 col0">6</td>
+<td id="T_fe7f3_row6_col1" class="data row6 col1">~2033</td>
+<td id="T_fe7f3_row6_col2" class="data row6 col2">0.78125000</td>
+<td id="T_fe7f3_row6_col3" class="data row6 col3">164,062.500</td>
+<td id="T_fe7f3_row6_col4" class="data row6 col4">20,835,937.500</td>
+<td id="T_fe7f3_row6_col5" class="data row6 col5">99.218750000%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row7_col0" class="data row7 col0">7</td>
+<td id="T_fe7f3_row7_col1" class="data row7 col1">~2037</td>
+<td id="T_fe7f3_row7_col2" class="data row7 col2">0.39062500</td>
+<td id="T_fe7f3_row7_col3" class="data row7 col3">82,031.250</td>
+<td id="T_fe7f3_row7_col4" class="data row7 col4">20,917,968.750</td>
+<td id="T_fe7f3_row7_col5" class="data row7 col5">99.609375000%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row8_col0" class="data row8 col0">8</td>
+<td id="T_fe7f3_row8_col1" class="data row8 col1">~2041</td>
+<td id="T_fe7f3_row8_col2" class="data row8 col2">0.19531250</td>
+<td id="T_fe7f3_row8_col3" class="data row8 col3">41,015.625</td>
+<td id="T_fe7f3_row8_col4" class="data row8 col4">20,958,984.375</td>
+<td id="T_fe7f3_row8_col5" class="data row8 col5">99.804687500%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row9_col0" class="data row9 col0">9</td>
+<td id="T_fe7f3_row9_col1" class="data row9 col1">~2045</td>
+<td id="T_fe7f3_row9_col2" class="data row9 col2">0.09765625</td>
+<td id="T_fe7f3_row9_col3" class="data row9 col3">20,507.812</td>
+<td id="T_fe7f3_row9_col4" class="data row9 col4">20,979,492.188</td>
+<td id="T_fe7f3_row9_col5" class="data row9 col5">99.902343750%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row10_col0" class="data row10 col0">10</td>
+<td id="T_fe7f3_row10_col1" class="data row10 col1">~2049</td>
+<td id="T_fe7f3_row10_col2" class="data row10 col2">0.04882812</td>
+<td id="T_fe7f3_row10_col3" class="data row10 col3">10,253.906</td>
+<td id="T_fe7f3_row10_col4" class="data row10 col4">20,989,746.094</td>
+<td id="T_fe7f3_row10_col5" class="data row10 col5">99.951171875%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row11_col0" class="data row11 col0">11</td>
+<td id="T_fe7f3_row11_col1" class="data row11 col1">~2053</td>
+<td id="T_fe7f3_row11_col2" class="data row11 col2">0.02441406</td>
+<td id="T_fe7f3_row11_col3" class="data row11 col3">5,126.953</td>
+<td id="T_fe7f3_row11_col4" class="data row11 col4">20,994,873.047</td>
+<td id="T_fe7f3_row11_col5" class="data row11 col5">99.975585938%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row12_col0" class="data row12 col0">12</td>
+<td id="T_fe7f3_row12_col1" class="data row12 col1">~2057</td>
+<td id="T_fe7f3_row12_col2" class="data row12 col2">0.01220703</td>
+<td id="T_fe7f3_row12_col3" class="data row12 col3">2,563.477</td>
+<td id="T_fe7f3_row12_col4" class="data row12 col4">20,997,436.523</td>
+<td id="T_fe7f3_row12_col5" class="data row12 col5">99.987792969%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row13_col0" class="data row13 col0">13</td>
+<td id="T_fe7f3_row13_col1" class="data row13 col1">~2061</td>
+<td id="T_fe7f3_row13_col2" class="data row13 col2">0.00610352</td>
+<td id="T_fe7f3_row13_col3" class="data row13 col3">1,281.738</td>
+<td id="T_fe7f3_row13_col4" class="data row13 col4">20,998,718.262</td>
+<td id="T_fe7f3_row13_col5" class="data row13 col5">99.993896484%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row14_col0" class="data row14 col0">14</td>
+<td id="T_fe7f3_row14_col1" class="data row14 col1">~2065</td>
+<td id="T_fe7f3_row14_col2" class="data row14 col2">0.00305176</td>
+<td id="T_fe7f3_row14_col3" class="data row14 col3">640.869</td>
+<td id="T_fe7f3_row14_col4" class="data row14 col4">20,999,359.131</td>
+<td id="T_fe7f3_row14_col5" class="data row14 col5">99.996948242%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row15_col0" class="data row15 col0">15</td>
+<td id="T_fe7f3_row15_col1" class="data row15 col1">~2069</td>
+<td id="T_fe7f3_row15_col2" class="data row15 col2">0.00152588</td>
+<td id="T_fe7f3_row15_col3" class="data row15 col3">320.435</td>
+<td id="T_fe7f3_row15_col4" class="data row15 col4">20,999,679.565</td>
+<td id="T_fe7f3_row15_col5" class="data row15 col5">99.998474121%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row16_col0" class="data row16 col0">16</td>
+<td id="T_fe7f3_row16_col1" class="data row16 col1">~2073</td>
+<td id="T_fe7f3_row16_col2" class="data row16 col2">0.00076294</td>
+<td id="T_fe7f3_row16_col3" class="data row16 col3">160.217</td>
+<td id="T_fe7f3_row16_col4" class="data row16 col4">20,999,839.783</td>
+<td id="T_fe7f3_row16_col5" class="data row16 col5">99.999237061%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row17_col0" class="data row17 col0">17</td>
+<td id="T_fe7f3_row17_col1" class="data row17 col1">~2077</td>
+<td id="T_fe7f3_row17_col2" class="data row17 col2">0.00038147</td>
+<td id="T_fe7f3_row17_col3" class="data row17 col3">80.109</td>
+<td id="T_fe7f3_row17_col4" class="data row17 col4">20,999,919.891</td>
+<td id="T_fe7f3_row17_col5" class="data row17 col5">99.999618530%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row18_col0" class="data row18 col0">18</td>
+<td id="T_fe7f3_row18_col1" class="data row18 col1">~2081</td>
+<td id="T_fe7f3_row18_col2" class="data row18 col2">0.00019073</td>
+<td id="T_fe7f3_row18_col3" class="data row18 col3">40.054</td>
+<td id="T_fe7f3_row18_col4" class="data row18 col4">20,999,959.946</td>
+<td id="T_fe7f3_row18_col5" class="data row18 col5">99.999809265%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row19_col0" class="data row19 col0">19</td>
+<td id="T_fe7f3_row19_col1" class="data row19 col1">~2085</td>
+<td id="T_fe7f3_row19_col2" class="data row19 col2">0.00009537</td>
+<td id="T_fe7f3_row19_col3" class="data row19 col3">20.027</td>
+<td id="T_fe7f3_row19_col4" class="data row19 col4">20,999,979.973</td>
+<td id="T_fe7f3_row19_col5" class="data row19 col5">99.999904633%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row20_col0" class="data row20 col0">20</td>
+<td id="T_fe7f3_row20_col1" class="data row20 col1">~2089</td>
+<td id="T_fe7f3_row20_col2" class="data row20 col2">0.00004768</td>
+<td id="T_fe7f3_row20_col3" class="data row20 col3">10.014</td>
+<td id="T_fe7f3_row20_col4" class="data row20 col4">20,999,989.986</td>
+<td id="T_fe7f3_row20_col5" class="data row20 col5">99.999952316%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row21_col0" class="data row21 col0">21</td>
+<td id="T_fe7f3_row21_col1" class="data row21 col1">~2093</td>
+<td id="T_fe7f3_row21_col2" class="data row21 col2">0.00002384</td>
+<td id="T_fe7f3_row21_col3" class="data row21 col3">5.007</td>
+<td id="T_fe7f3_row21_col4" class="data row21 col4">20,999,994.993</td>
+<td id="T_fe7f3_row21_col5" class="data row21 col5">99.999976158%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row22_col0" class="data row22 col0">22</td>
+<td id="T_fe7f3_row22_col1" class="data row22 col1">~2097</td>
+<td id="T_fe7f3_row22_col2" class="data row22 col2">0.00001192</td>
+<td id="T_fe7f3_row22_col3" class="data row22 col3">2.503</td>
+<td id="T_fe7f3_row22_col4" class="data row22 col4">20,999,997.497</td>
+<td id="T_fe7f3_row22_col5" class="data row22 col5">99.999988079%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row23_col0" class="data row23 col0">23</td>
+<td id="T_fe7f3_row23_col1" class="data row23 col1">~2101</td>
+<td id="T_fe7f3_row23_col2" class="data row23 col2">0.00000596</td>
+<td id="T_fe7f3_row23_col3" class="data row23 col3">1.252</td>
+<td id="T_fe7f3_row23_col4" class="data row23 col4">20,999,998.748</td>
+<td id="T_fe7f3_row23_col5" class="data row23 col5">99.999994040%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row24_col0" class="data row24 col0">24</td>
+<td id="T_fe7f3_row24_col1" class="data row24 col1">~2105</td>
+<td id="T_fe7f3_row24_col2" class="data row24 col2">0.00000298</td>
+<td id="T_fe7f3_row24_col3" class="data row24 col3">0.626</td>
+<td id="T_fe7f3_row24_col4" class="data row24 col4">20,999,999.374</td>
+<td id="T_fe7f3_row24_col5" class="data row24 col5">99.999997020%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row25_col0" class="data row25 col0">25</td>
+<td id="T_fe7f3_row25_col1" class="data row25 col1">~2109</td>
+<td id="T_fe7f3_row25_col2" class="data row25 col2">0.00000149</td>
+<td id="T_fe7f3_row25_col3" class="data row25 col3">0.313</td>
+<td id="T_fe7f3_row25_col4" class="data row25 col4">20,999,999.687</td>
+<td id="T_fe7f3_row25_col5" class="data row25 col5">99.999998510%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row26_col0" class="data row26 col0">26</td>
+<td id="T_fe7f3_row26_col1" class="data row26 col1">~2113</td>
+<td id="T_fe7f3_row26_col2" class="data row26 col2">0.00000075</td>
+<td id="T_fe7f3_row26_col3" class="data row26 col3">0.156</td>
+<td id="T_fe7f3_row26_col4" class="data row26 col4">20,999,999.844</td>
+<td id="T_fe7f3_row26_col5" class="data row26 col5">99.999999255%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row27_col0" class="data row27 col0">27</td>
+<td id="T_fe7f3_row27_col1" class="data row27 col1">~2117</td>
+<td id="T_fe7f3_row27_col2" class="data row27 col2">0.00000037</td>
+<td id="T_fe7f3_row27_col3" class="data row27 col3">0.078</td>
+<td id="T_fe7f3_row27_col4" class="data row27 col4">20,999,999.922</td>
+<td id="T_fe7f3_row27_col5" class="data row27 col5">99.999999627%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row28_col0" class="data row28 col0">28</td>
+<td id="T_fe7f3_row28_col1" class="data row28 col1">~2121</td>
+<td id="T_fe7f3_row28_col2" class="data row28 col2">0.00000019</td>
+<td id="T_fe7f3_row28_col3" class="data row28 col3">0.039</td>
+<td id="T_fe7f3_row28_col4" class="data row28 col4">20,999,999.961</td>
+<td id="T_fe7f3_row28_col5" class="data row28 col5">99.999999814%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row29_col0" class="data row29 col0">29</td>
+<td id="T_fe7f3_row29_col1" class="data row29 col1">~2125</td>
+<td id="T_fe7f3_row29_col2" class="data row29 col2">0.00000009</td>
+<td id="T_fe7f3_row29_col3" class="data row29 col3">0.020</td>
+<td id="T_fe7f3_row29_col4" class="data row29 col4">20,999,999.980</td>
+<td id="T_fe7f3_row29_col5" class="data row29 col5">99.999999907%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row30_col0" class="data row30 col0">30</td>
+<td id="T_fe7f3_row30_col1" class="data row30 col1">~2129</td>
+<td id="T_fe7f3_row30_col2" class="data row30 col2">0.00000005</td>
+<td id="T_fe7f3_row30_col3" class="data row30 col3">0.010</td>
+<td id="T_fe7f3_row30_col4" class="data row30 col4">20,999,999.990</td>
+<td id="T_fe7f3_row30_col5" class="data row30 col5">99.999999953%</td>
+</tr>
+<tr class="even">
+<td id="T_fe7f3_row31_col0" class="data row31 col0">31</td>
+<td id="T_fe7f3_row31_col1" class="data row31 col1">~2133</td>
+<td id="T_fe7f3_row31_col2" class="data row31 col2">0.00000002</td>
+<td id="T_fe7f3_row31_col3" class="data row31 col3">0.005</td>
+<td id="T_fe7f3_row31_col4" class="data row31 col4">20,999,999.995</td>
+<td id="T_fe7f3_row31_col5" class="data row31 col5">99.999999977%</td>
+</tr>
+<tr class="odd">
+<td id="T_fe7f3_row32_col0" class="data row32 col0">32</td>
+<td id="T_fe7f3_row32_col1" class="data row32 col1">~2137</td>
+<td id="T_fe7f3_row32_col2" class="data row32 col2">0.00000001</td>
+<td id="T_fe7f3_row32_col3" class="data row32 col3">0.002</td>
+<td id="T_fe7f3_row32_col4" class="data row32 col4">20,999,999.998</td>
+<td id="T_fe7f3_row32_col5" class="data row32 col5">99.999999988%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Current halving (2024-2028) is halving #4</li>
+<li>By halving #10 (around 2049), 99.9% of all Bitcoin will be mined</li>
+<li>By 2101 (Halving #23), only 1.25 Bitcoin will be available for mining</li>
+<li>Final Bitcoin will be mined around year 2140</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="summary-statistics" class="level3">
+<h3 class="anchored" data-anchor-id="summary-statistics">Summary Statistics</h3>
+<div id="cell-summary-stats" class="cell" data-execution_count="7">
+<div id="summary-stats" class="cell-output cell-output-display cell-output-markdown" data-execution_count="7">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>First Block Reward</strong></td>
+<td>50 BTC</td>
+</tr>
+<tr class="even">
+<td><strong>Current Block Reward</strong></td>
+<td>3.125 BTC (as of 2024)</td>
+</tr>
+<tr class="odd">
+<td><strong>Total Halvings Until ~0</strong></td>
+<td>33</td>
+</tr>
+<tr class="even">
+<td><strong>Years to Mine All Bitcoin</strong></td>
+<td>~128.0 years</td>
+</tr>
+<tr class="odd">
+<td><strong>Bitcoin Mined in First 4 Years</strong></td>
+<td>10,500,000 BTC (50% of total)</td>
+</tr>
+<tr class="even">
+<td><strong>Bitcoin After 10 Halvings</strong></td>
+<td>20,979,492 BTC (99.80% of cap)</td>
+</tr>
+<tr class="odd">
+<td><strong>Estimated Final Supply</strong></td>
+<td>20,999,999.9769 BTC</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="the-mathematics" class="level3">
+<h3 class="anchored" data-anchor-id="the-mathematics">The Mathematics</h3>
+<p>The total supply follows a geometric series:</p>
+<p><span class="math display">\[
+\text{Total Supply} = \sum_{n=0}^{64} 210{,}000 \times \frac{50}{2^n}
+\]</span></p>
+<!-- -->
+
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Bitcoin Halving Process"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "How Bitcoin's supply approaches 21 million through programmatic halvings"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: Flatly</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: false</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 2</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: false</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotly.subplots <span class="im">import</span> make_subplots</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: data-generation</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate Bitcoin halving data</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> generate_halving_data():</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> []</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    block_reward <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    cumulative_supply <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    blocks_per_halving <span class="op">=</span> <span class="dv">210000</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate data for approximately 34 halvings</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> halving <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">34</span>):</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        year <span class="op">=</span> <span class="dv">2009</span> <span class="op">+</span> (halving <span class="op">*</span> <span class="dv">4</span>)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        blocks_in_period <span class="op">=</span> blocks_per_halving</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>        btc_in_period <span class="op">=</span> blocks_in_period <span class="op">*</span> block_reward</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        cumulative_supply <span class="op">+=</span> btc_in_period</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        data.append({</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>            <span class="st">'halving'</span>: halving,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>            <span class="st">'year'</span>: year,</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>            <span class="st">'block_reward'</span>: block_reward,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>            <span class="st">'cumulative_supply'</span>: cumulative_supply,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>            <span class="st">'btc_per_period'</span>: btc_in_period,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>            <span class="st">'percent_of_cap'</span>: (cumulative_supply <span class="op">/</span> <span class="dv">21000000</span>) <span class="op">*</span> <span class="dv">100</span>,</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>            <span class="st">'remaining_supply'</span>: <span class="dv">21000000</span> <span class="op">-</span> cumulative_supply</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>        block_reward <span class="op">=</span> block_reward <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Stop when block reward becomes negligible</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> block_reward <span class="op">&lt;</span> <span class="fl">0.00000001</span>:</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> pd.DataFrame(data)</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> generate_halving_data()</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="fu">### Overview</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>Bitcoin's 21 million coin cap is maintained through an elegant mathematical design that combines block rewards and halvings. This visualization shows how the supply approaches its maximum through programmatic halvings every 210,000 blocks (approximately 4 years).</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="fu">### Cumulative Bitcoin Supply Over Time</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: cumulative-supply-chart</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>fig1 <span class="op">=</span> go.Figure()</span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Add cumulative supply line</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>fig1.add_trace(go.Scatter(</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>df[<span class="st">'year'</span>],</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>df[<span class="st">'cumulative_supply'</span>],</span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">'lines+markers'</span>,</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'Total BTC Supply'</span>,</span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>    line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#F97316'</span>, width<span class="op">=</span><span class="dv">3</span>),</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>    marker<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">6</span>, color<span class="op">=</span><span class="st">'#F97316'</span>),</span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>    hovertemplate<span class="op">=</span><span class="st">'&lt;b&gt;Year:&lt;/b&gt; %</span><span class="sc">{x}</span><span class="st">&lt;br&gt;'</span> <span class="op">+</span></span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'&lt;b&gt;Supply:&lt;/b&gt; %</span><span class="sc">{y:,.0f}</span><span class="st"> BTC&lt;br&gt;'</span> <span class="op">+</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'&lt;extra&gt;&lt;/extra&gt;'</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Add 21M cap line</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>fig1.add_trace(go.Scatter(</span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>df[<span class="st">'year'</span>],</span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>[<span class="dv">21000000</span>] <span class="op">*</span> <span class="bu">len</span>(df),</span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">'lines'</span>,</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'21M Cap'</span>,</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>    line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#EF4444'</span>, width<span class="op">=</span><span class="dv">2</span>, dash<span class="op">=</span><span class="st">'dash'</span>),</span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>    hovertemplate<span class="op">=</span><span class="st">'&lt;b&gt;21M Cap&lt;/b&gt;&lt;extra&gt;&lt;/extra&gt;'</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>fig1.update_layout(</span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>    template<span class="op">=</span><span class="st">'plotly_dark'</span>,</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>    plot_bgcolor<span class="op">=</span><span class="st">'#1F2937'</span>,</span>
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    paper_bgcolor<span class="op">=</span><span class="st">'#111827'</span>,</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">500</span>,</span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">''</span>,</span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>        showgrid<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>        gridcolor<span class="op">=</span><span class="st">'#374151'</span>,</span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>        tickfont<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">12</span>)</span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">'BTC Supply (millions)'</span>,</span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>        showgrid<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>        gridcolor<span class="op">=</span><span class="st">'#374151'</span>,</span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>        tickformat<span class="op">=</span><span class="st">'.1f'</span>,</span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>        ticksuffix<span class="op">=</span><span class="st">'M'</span>,</span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>        tickvals<span class="op">=</span>[<span class="dv">0</span>, <span class="dv">5000000</span>, <span class="dv">10000000</span>, <span class="dv">15000000</span>, <span class="dv">20000000</span>, <span class="dv">21000000</span>],</span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>        ticktext<span class="op">=</span>[<span class="st">'0M'</span>, <span class="st">'5M'</span>, <span class="st">'10M'</span>, <span class="st">'15M'</span>, <span class="st">'20M'</span>, <span class="st">'21M'</span>],</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>        tickfont<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>        orientation<span class="op">=</span><span class="st">'h'</span>,</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>        yanchor<span class="op">=</span><span class="st">'bottom'</span>,</span>
+<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="fl">1.02</span>,</span>
+<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a>        xanchor<span class="op">=</span><span class="st">'right'</span>,</span>
+<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a>    hovermode<span class="op">=</span><span class="st">'x unified'</span></span>
+<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a>fig1.show()</span>
+<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a>Bitcoin's block reward system creates new bitcoins approximately every 10 minutes, starting at 50 BTC per block in 2009. Every 210,000 blocks (roughly 4 years), this reward cuts in half—from 50 to 25, then 12.5, 6.25, 3.125, and so on—creating a predictable supply schedule. This halving process forms a geometric series that mathematically converges to approximately 21 million BTC, with the supply curve asymptotically approaching but never quite reaching the cap. By around 2140, when the block reward becomes smaller than Bitcoin's smallest unit (1 satoshi), no new bitcoins will be created, and miners will rely entirely on transaction fees for compensation.</span>
+<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a>A satoshi is the smallest unit of Bitcoin, named after its pseudonymous creator Satoshi Nakamoto. One satoshi equals 0.00000001 BTC, meaning there are exactly 100 million satoshis in a single bitcoin. This tiny denomination allows for microtransactions and ensures Bitcoin remains divisible and practical even if its value increases dramatically, similar to how a dollar can be divided into 100 cents.</span>
+<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a><span class="fu">### Remaining Bitcoin to be Mined</span></span>
+<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: remaining-supply-chart</span></span>
+<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>fig2 <span class="op">=</span> go.Figure()</span>
+<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a><span class="co"># Add remaining supply line</span></span>
+<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a>fig2.add_trace(go.Scatter(</span>
+<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>df[<span class="st">'year'</span>],</span>
+<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>df[<span class="st">'remaining_supply'</span>],</span>
+<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">'lines+markers'</span>,</span>
+<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'BTC Remaining'</span>,</span>
+<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a>    line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'#3B82F6'</span>, width<span class="op">=</span><span class="dv">3</span>),</span>
+<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a>    marker<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">6</span>, color<span class="op">=</span><span class="st">'#3B82F6'</span>),</span>
+<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>    hovertemplate<span class="op">=</span><span class="st">'&lt;b&gt;Year:&lt;/b&gt; %</span><span class="sc">{x}</span><span class="st">&lt;br&gt;'</span> <span class="op">+</span></span>
+<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'&lt;b&gt;Remaining:&lt;/b&gt; %</span><span class="sc">{y:,.0f}</span><span class="st"> BTC&lt;br&gt;'</span> <span class="op">+</span></span>
+<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'&lt;b&gt;% Remaining:&lt;/b&gt; %</span><span class="sc">{customdata:.2f}</span><span class="st">%&lt;br&gt;'</span> <span class="op">+</span></span>
+<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'&lt;extra&gt;&lt;/extra&gt;'</span>,</span>
+<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>    customdata<span class="op">=</span>(df[<span class="st">'remaining_supply'</span>] <span class="op">/</span> <span class="dv">21000000</span>) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a>fig2.update_layout(</span>
+<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a>    template<span class="op">=</span><span class="st">'plotly_dark'</span>,</span>
+<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a>    plot_bgcolor<span class="op">=</span><span class="st">'#1F2937'</span>,</span>
+<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>    paper_bgcolor<span class="op">=</span><span class="st">'#111827'</span>,</span>
+<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">500</span>,</span>
+<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">''</span>,</span>
+<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a>        showgrid<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a>        gridcolor<span class="op">=</span><span class="st">'#374151'</span>,</span>
+<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>        tickfont<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">''</span>,</span>
+<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span><span class="op">=</span><span class="st">'log'</span>,</span>
+<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>        showgrid<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a>        gridcolor<span class="op">=</span><span class="st">'#374151'</span>,</span>
+<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a>        tickformat<span class="op">=</span><span class="st">','</span>,</span>
+<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a>        tickfont<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>    legend<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>        orientation<span class="op">=</span><span class="st">'h'</span>,</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>        yanchor<span class="op">=</span><span class="st">'bottom'</span>,</span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="fl">1.02</span>,</span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>        xanchor<span class="op">=</span><span class="st">'right'</span>,</span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>    hovermode<span class="op">=</span><span class="st">'x unified'</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>fig2.show()</span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>Y-axis log scale reveals the consistent exponential decay - the remaining supply halves with each halving event.</span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a><span class="fu">### Block Reward Decay Over Halvings</span></span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: block-reward-chart</span></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a><span class="co"># Show only first 16 halvings for better visualization</span></span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>df_subset <span class="op">=</span> df.head(<span class="dv">33</span>)</span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>fig3 <span class="op">=</span> go.Figure()</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>fig3.add_trace(go.Bar(</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>df_subset[<span class="st">'halving'</span>],</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>df_subset[<span class="st">'block_reward'</span>],</span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'Block Reward'</span>,</span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>    marker_color<span class="op">=</span><span class="st">'#F97316'</span>,</span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>    hovertemplate<span class="op">=</span><span class="st">'&lt;b&gt;Halving #:&lt;/b&gt; %</span><span class="sc">{x}</span><span class="st">&lt;br&gt;'</span> <span class="op">+</span></span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'&lt;b&gt;Year:&lt;/b&gt; ~%</span><span class="sc">{customdata}</span><span class="st">&lt;br&gt;'</span> <span class="op">+</span></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'&lt;b&gt;Block Reward:&lt;/b&gt; %</span><span class="sc">{y:.8f}</span><span class="st"> BTC&lt;br&gt;'</span> <span class="op">+</span></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>                  <span class="st">'&lt;extra&gt;&lt;/extra&gt;'</span>,</span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>    customdata<span class="op">=</span>df_subset[<span class="st">'year'</span>]</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>fig3.update_layout(</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a>    template<span class="op">=</span><span class="st">'plotly_dark'</span>,</span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>    plot_bgcolor<span class="op">=</span><span class="st">'#1F2937'</span>,</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>    paper_bgcolor<span class="op">=</span><span class="st">'#111827'</span>,</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">500</span>,</span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>    xaxis<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">'Halving Number'</span>,</span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>        showgrid<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>        gridcolor<span class="op">=</span><span class="st">'#374151'</span>,</span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>        tickfont<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">11</span>),</span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a>        tickmode<span class="op">=</span><span class="st">'linear'</span>,</span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>        tick0<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>        dtick<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>    yaxis<span class="op">=</span><span class="bu">dict</span>(</span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>        title<span class="op">=</span><span class="st">'Block Reward (BTC)'</span>,</span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>        <span class="bu">type</span><span class="op">=</span><span class="st">'log'</span>,</span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>        showgrid<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>        gridcolor<span class="op">=</span><span class="st">'#374151'</span>,</span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>        tickfont<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">11</span>)</span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>    hovermode<span class="op">=</span><span class="st">'x unified'</span></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>fig3.show()</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>Bitcoin miners receive a fixed number of newly created bitcoins (the "block reward") for successfully mining each block, which occurs approximately every 10 minutes. This reward started at 50 BTC in 2009 and automatically halves every 210,000 blocks (roughly every 4 years), currently sitting at 3.125 BTC as of 2024. Through this systematic halving process, the total supply of Bitcoin will asymptotically approach but never exceed 21 million coins, with the final bitcoin expected to be mined around the year 2140. Y-axis log scale again reveals the consistent exponential decay.</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a><span class="fu">### Bitcoin Halving Schedule {.tabset}</span></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: data-table</span></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a><span class="co"># Show first 33 halvings in a formatted table</span></span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>df_display <span class="op">=</span> df.head(<span class="dv">33</span>).copy()</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>df_display[<span class="st">'year'</span>] <span class="op">=</span> <span class="st">'~'</span> <span class="op">+</span> df_display[<span class="st">'year'</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a>df_display[<span class="st">'block_reward'</span>] <span class="op">=</span> df_display[<span class="st">'block_reward'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f'</span><span class="sc">{</span>x<span class="sc">:.8f}</span><span class="ss">'</span>)</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>df_display[<span class="st">'btc_per_period'</span>] <span class="op">=</span> df_display[<span class="st">'btc_per_period'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f'</span><span class="sc">{</span>x<span class="sc">:,.3f}</span><span class="ss">'</span>)</span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>df_display[<span class="st">'cumulative_supply'</span>] <span class="op">=</span> df_display[<span class="st">'cumulative_supply'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f'</span><span class="sc">{</span>x<span class="sc">:,.3f}</span><span class="ss">'</span>)</span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>df_display[<span class="st">'percent_of_cap'</span>] <span class="op">=</span> df_display[<span class="st">'percent_of_cap'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="ss">f'</span><span class="sc">{</span>x<span class="sc">:.9f}</span><span class="ss">%'</span>)</span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>df_display <span class="op">=</span> df_display[[<span class="st">'halving'</span>, <span class="st">'year'</span>, <span class="st">'block_reward'</span>, <span class="st">'btc_per_period'</span>, <span class="st">'cumulative_supply'</span>, <span class="st">'percent_of_cap'</span>]]</span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>df_display.columns <span class="op">=</span> [<span class="st">'Halving #'</span>, <span class="st">'Year'</span>, <span class="st">'Block Reward'</span>, <span class="st">'BTC Mined'</span>, <span class="st">'Cumulative Supply'</span>, <span class="st">'</span><span class="sc">% o</span><span class="st">f Cap'</span>]</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a><span class="co"># Style the current halving (2024-2028)</span></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>styled_df <span class="op">=</span> df_display.style.set_properties(<span class="op">**</span>{</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>    <span class="st">'background-color'</span>: <span class="st">'#1F2937'</span>,</span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>    <span class="st">'color'</span>: <span class="st">'#D1D5DB'</span>,</span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>    <span class="st">'border-color'</span>: <span class="st">'#374151'</span></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>}).set_table_styles([</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'selector'</span>: <span class="st">'th'</span>, <span class="st">'props'</span>: [(<span class="st">'background-color'</span>, <span class="st">'#F97316'</span>), (<span class="st">'color'</span>, <span class="st">'white'</span>), (<span class="st">'font-weight'</span>, <span class="st">'bold'</span>)]},</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>    {<span class="st">'selector'</span>: <span class="st">'tr:nth-of-type(5)'</span>, <span class="st">'props'</span>: [(<span class="st">'background-color'</span>, <span class="st">'#7C2D12'</span>)]}  <span class="co"># Highlight current halving</span></span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>]).hide(axis<span class="op">=</span><span class="st">'index'</span>)</span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>styled_df</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Current halving (2024-2028) is halving #4</span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>By halving #10 (around 2049), 99.9% of all Bitcoin will be mined</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>By 2101 (Halving #23), only 1.25 Bitcoin will be available for mining</span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Final Bitcoin will be mined around year 2140</span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a><span class="fu">### Summary Statistics</span></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: summary-stats</span></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> Markdown</span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>stats <span class="op">=</span> <span class="ss">f"""</span></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a><span class="ss">| Metric | Value |</span></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a><span class="ss">|--------|-------|</span></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a><span class="ss">| **First Block Reward** | 50 BTC |</span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="ss">| **Current Block Reward** | 3.125 BTC (as of 2024) |</span></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a><span class="ss">| **Total Halvings Until ~0** | </span><span class="sc">{</span><span class="bu">len</span>(df)<span class="sc">}</span><span class="ss"> |</span></span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a><span class="ss">| **Years to Mine All Bitcoin** | ~</span><span class="sc">{</span>df<span class="sc">.</span>iloc[<span class="op">-</span><span class="dv">1</span>][<span class="st">'year'</span>] <span class="op">-</span> <span class="dv">2009</span><span class="sc">}</span><span class="ss"> years |</span></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a><span class="ss">| **Bitcoin Mined in First 4 Years** | </span><span class="sc">{</span>df<span class="sc">.</span>iloc[<span class="dv">0</span>][<span class="st">'cumulative_supply'</span>]<span class="sc">:,.0f}</span><span class="ss"> BTC (50% of total) |</span></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="ss">| **Bitcoin After 10 Halvings** | </span><span class="sc">{</span>df<span class="sc">.</span>iloc[<span class="dv">9</span>][<span class="st">'cumulative_supply'</span>]<span class="sc">:,.0f}</span><span class="ss"> BTC (</span><span class="sc">{</span>df<span class="sc">.</span>iloc[<span class="dv">8</span>][<span class="st">'percent_of_cap'</span>]<span class="sc">:.2f}</span><span class="ss">% of cap) |</span></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a><span class="ss">| **Estimated Final Supply** | 20,999,999.9769 BTC |</span></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a><span class="ss">"""</span></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>Markdown(stats)</span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Mathematics</span></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>The total supply follows a geometric series:</span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>\text{Total Supply} = \sum_{n=0}^{64} 210{,}000 \times \frac{50}{2^n}</span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>$$</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
