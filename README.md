@@ -1,3 +1,4 @@
+## Bitcoin Halving Visualization
 
 rQuarto project link: https://patrick-lefler.github.io/Bitcoin-Halving-Visualization-PythonQuarto/
 
