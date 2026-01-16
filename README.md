@@ -37,9 +37,10 @@ $$\text{Total Supply} = \sum_{n=0}^{64} 210{,}000 \times \frac{50}{2^n}$$
 * Termination Criteria: When block reward < 1 Satoshi ($10^{-8}$ BTC)12
 
 ### Project Structure
-├── Bitcoin_Halving_V1.2.qmd  # Main Quarto source file
-├── README.md                 # Project documentation
-└── [Generated HTML]          # Output file (after rendering)
+
+├── Bitcoin_Halving_V1.2.qmd  
+├── README.md                 
+└── [Generated HTML]        
 
 ### License
 This project is open-source. Feel free to fork and modify the simulation parameters to test different supply curve scenarios.
