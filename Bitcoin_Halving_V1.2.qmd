@@ -1,6 +1,6 @@
 ---
 title: "Bitcoin Halving Process Visualization"
-subtitle: "How Bitcoin's supply approaches 21 million through programmatic halvings"
+subtitle: "How Bitcoin's supply approaches 21 million through programmatic halving"
 format:
   html:
     theme: sandstone
@@ -65,7 +65,7 @@ df = generate_halving_data()
 
 ### Overview
 
-Bitcoin's 21 million coin cap is maintained through an elegant mathematical design that combines block rewards and halvings. This visualization shows how the supply approaches its maximum through programmatic halvings every 210,000 blocks (approximately 4 years).
+Bitcoin's 21 million coin cap is maintained through an elegant mathematical design that combines block rewards and halving. This visualization shows how the supply approaches its maximum through programmatic halving every 210,000 blocks (approximately 4 years).
 
 ### Cumulative Bitcoin Supply Over Time
 
@@ -193,7 +193,7 @@ fig2.show()
 Y-axis log scale reveals the consistent exponential decay - the remaining supply halves with each halving event.
 
 
-### Block Reward Decay Over Halvings
+### Block Reward Decay Over Halving
 
 ```{python}
 #| label: block-reward-chart
